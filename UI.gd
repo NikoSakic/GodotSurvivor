@@ -6,13 +6,20 @@ class_name UI
 @onready var ammo_label : Label = $Control/MarginContainer/VBoxContainer2/HBoxContainer/AmmoDisplay
 @onready var weapon_label : Label = $Control/MarginContainer/VBoxContainer2/HBoxContainer2/WeaponName
 @onready var wave_label : Label = $Control/MarginContainer/VBoxWaveInfo/HBoxContainer/WaveInfoLabel
-
+@onready var fps_label : Label = $Control/MarginContainer/VBoxContainer/HBoxContainer/FPSLabel
 
 var player_score = 0
 
 func _ready():
 	player_score = 0
 	_update_score_label(player_score)
+	var fps_timer := Timer.new()
+	add_child(fps_timer)
+	fps_timer.connect("timeout", _on_FPSTimer_timeout)
+	fps_timer.start()
+
+func _on_FPSTimer_timeout() -> void:
+	fps_label.text = str(Engine.get_frames_per_second())
 
 func _update_health_label(value:int):
 	if value < 0:
