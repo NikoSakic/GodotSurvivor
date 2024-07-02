@@ -1,0 +1,68 @@
+[gd_scene load_steps=11 format=3 uid="uid://jandp7oi8n2a"]
+
+[ext_resource type="Script" path="res://Player.gd" id="1_p344n"]
+[ext_resource type="Texture2D" uid="uid://b762i4h72kdna" path="res://Art/characters/soldier.png" id="2_tmddh"]
+[ext_resource type="Script" path="res://WeaponContainer.gd" id="3_3h6e7"]
+[ext_resource type="Script" path="res://PlayerShooting.gd" id="4_eq6yy"]
+[ext_resource type="Script" path="res://PlayerWeaponSFX.gd" id="5_plw4p"]
+[ext_resource type="AudioStream" uid="uid://csfi2abbjhc6s" path="res://Art/Sounds/my_short_smg_sound.wav" id="6_48kcv"]
+[ext_resource type="AudioStream" uid="uid://cctj8d7o3sog8" path="res://Art/Sounds/my_rifle_sound.wav" id="7_iwll2"]
+[ext_resource type="AudioStream" uid="uid://cdx73hjbjop8o" path="res://Art/Sounds/my_shotgun_sound.wav" id="8_w47wj"]
+[ext_resource type="AudioStream" uid="uid://b7htxworlst7b" path="res://Art/Sounds/my_rocketlauncher_sound.wav" id="9_1jvp5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nyer5"]
+radius = 25.0
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_p344n")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(15, 0)
+texture = ExtResource("2_tmddh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(6, 0)
+shape = SubResource("CircleShape2D_nyer5")
+one_way_collision_margin = 0.0
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(2000, 0)
+collision_mask = 3
+
+[node name="WeaponContainer" type="Node2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3_3h6e7")
+
+[node name="BulletSpawnPoint" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(47, 7)
+
+[node name="PlayerShooting" type="Node2D" parent="."]
+script = ExtResource("4_eq6yy")
+
+[node name="PlayerWeaponSFX" type="Node2D" parent="." node_paths=PackedStringArray("smg_audio", "rifle_audio", "shotgun_audio", "rl_audio")]
+unique_name_in_owner = true
+script = ExtResource("5_plw4p")
+smg_audio = NodePath("SMGShot")
+rifle_audio = NodePath("RifleShot")
+shotgun_audio = NodePath("ShotgunShot")
+rl_audio = NodePath("RocketLauncherShot")
+
+[node name="SMGShot" type="AudioStreamPlayer2D" parent="PlayerWeaponSFX"]
+stream = ExtResource("6_48kcv")
+bus = &"SFX"
+
+[node name="RifleShot" type="AudioStreamPlayer2D" parent="PlayerWeaponSFX"]
+stream = ExtResource("7_iwll2")
+bus = &"SFX"
+
+[node name="ShotgunShot" type="AudioStreamPlayer2D" parent="PlayerWeaponSFX"]
+stream = ExtResource("8_w47wj")
+bus = &"SFX"
+
+[node name="RocketLauncherShot" type="AudioStreamPlayer2D" parent="PlayerWeaponSFX"]
+stream = ExtResource("9_1jvp5")
+bus = &"SFX"
+
+[connection signal="weapon_swap" from="WeaponContainer" to="PlayerShooting" method="_on_weapon_container_weapon_swap"]

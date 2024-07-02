@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://bmdo5o5yigp0s"]
+
+[ext_resource type="Script" path="res://World.gd" id="1_4t3ao"]
+[ext_resource type="PackedScene" uid="uid://jandp7oi8n2a" path="res://Player.tscn" id="1_dk0un"]
+[ext_resource type="PackedScene" uid="uid://cot1861golrnt" path="res://UI.tscn" id="3_ft0py"]
+[ext_resource type="PackedScene" uid="uid://q0ftr06cc7hw" path="res://Enemy_spawner.tscn" id="5_1ve3j"]
+[ext_resource type="PackedScene" uid="uid://3eiqq0eynxib" path="res://ExplosionFX.tscn" id="6_phd0c"]
+
+[node name="World" type="Node2D" node_paths=PackedStringArray("player", "ui", "enemy_spawner")]
+script = ExtResource("1_4t3ao")
+player = NodePath("Player")
+ui = NodePath("UI")
+enemy_spawner = NodePath("EnemySpawner")
+
+[node name="Player" parent="." instance=ExtResource("1_dk0un")]
+unique_name_in_owner = true
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2(2, 2)
+
+[node name="UI" parent="." instance=ExtResource("3_ft0py")]
+
+[node name="EnemySpawner" parent="." instance=ExtResource("5_1ve3j")]
+
+[node name="Explosion" parent="." instance=ExtResource("6_phd0c")]

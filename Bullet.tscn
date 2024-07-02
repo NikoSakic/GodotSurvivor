@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://bth31600si0ls"]
+
+[ext_resource type="Script" path="res://Bullet.gd" id="1_8huwp"]
+[ext_resource type="Texture2D" uid="uid://bpdgmsvcyvine" path="res://Art/Projectiles/simple_bullet.png" id="2_e5gdp"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a655f"]
+radius = 5.0
+height = 18.0
+
+[node name="Bullet" type="Area2D" node_paths=PackedStringArray("area2d")]
+top_level = true
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_8huwp")
+SPEED = 1050
+area2d = NodePath(".")
+
+[node name="Projectile" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_e5gdp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_a655f")
