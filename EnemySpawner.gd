@@ -6,7 +6,7 @@ class_name EnemySpawner
 signal update_wave_info(text:String)
 
 var num_waves = 5
-var zombies_per_wave = 20
+var zombies_per_wave = 50
 var seconds_between_waves = 60
 var min_dist_spawn = 1000
 var max_dist_spawn = 1500
@@ -59,19 +59,17 @@ func spawn_wave():
 	
 func spawn_group(spawned_count:int) -> int:
 	var spawn_count = 3 + int(randf()*5)
-	var dist_fromplayer = int(min_dist_spawn + (max_dist_spawn-min_dist_spawn)*randf())
-	var spawn_pos = Vector2(dist_fromplayer, 0)
-	spawn_pos = spawn_pos.rotated(deg_to_rad(randf()*360))
-	var deviations = [-12, -8, -4, 0, 4, 8, 12]
 	for i in range(spawn_count):
 		if (i+1) + spawned_count > zombies_per_wave:
 			break
-		var deviated = deviations[randi() % deviations.size()]
+		var dist_fromplayer = int(min_dist_spawn + (max_dist_spawn-min_dist_spawn)*randf())
+		var spawn_pos = Vector2(dist_fromplayer, 0)
+		spawn_pos = spawn_pos.rotated(deg_to_rad(randf()*360))
 		var new_zombie :Zombie = ZOMBIE.instantiate()
-		new_zombie.global_position = player.global_position + spawn_pos.rotated(deg_to_rad(deviated))
+		new_zombie.global_position = player.global_position + spawn_pos
 		new_zombie.set_player(player)
 		add_child(new_zombie)
-		await get_tree().create_timer(0.5).timeout
+		await get_tree().create_timer(0.25).timeout
 	return spawn_count
 	
 func player_killed_enemy(_score :int):

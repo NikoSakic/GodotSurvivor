@@ -1,7 +1,7 @@
 extends CharacterBody2D
 class_name Player
  
-const MOVE_SPEED = 240
+const MOVE_SPEED = 260
 var damage = 35 
 var health = 100 
 
