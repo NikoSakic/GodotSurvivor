@@ -5,8 +5,8 @@ class_name PlayerShooting
 @onready var weapon_sfx:PlayerWeaponSFX = %PlayerWeaponSFX
 
 signal update_ammo_count(new_ammo_count:int)
-const BULLET = preload("res://Bullet.tscn")
-const ROCKET = preload("res://Rocket.tscn")
+const BULLET = preload("res://Scenes/Bullet.tscn")
+const ROCKET = preload("res://Scenes/Rocket.tscn")
 var current_weapon : WeaponContainer.WeaponStats = null
 var next_fire :float = 0.0
 

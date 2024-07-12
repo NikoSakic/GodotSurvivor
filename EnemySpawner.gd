@@ -20,7 +20,7 @@ var cur_wave = 1
 var enemies_killed :int = 0
 
 
-const ZOMBIE = preload("res://Zombie.tscn")
+const ZOMBIE = preload("res://Scenes/Zombie.tscn")
 
 func _ready():
 	is_wave_ongoing = false

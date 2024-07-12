@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://b653u876xeb55"]
+
+[ext_resource type="Script" path="res://Scenes/FireGhoul.gd" id="1_7rf5n"]
+[ext_resource type="Texture2D" uid="uid://stksrgjgtloe" path="res://Art/characters/fireball_zombie.png" id="1_j6yfm"]
+[ext_resource type="Script" path="res://Scenes/Components/PursuitComponent.gd" id="3_hk7qs"]
+[ext_resource type="Script" path="res://Scenes/Components/EnemyShootingComponent.gd" id="4_x5ixd"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ysq70"]
+radius = 30.0
+
+[node name="FireGhoul" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1_7rf5n")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 0)
+shape = SubResource("CircleShape2D_ysq70")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.0862745, 0.0862745, 0.0862745, 1)
+texture_filter = 1
+texture = ExtResource("1_j6yfm")
+
+[node name="PursuitComponent" type="Node2D" parent="." node_paths=PackedStringArray("char_body")]
+position = Vector2(-8, -4)
+script = ExtResource("3_hk7qs")
+char_body = NodePath("..")
+goal_range = 100.0
+
+[node name="EnemyShootingComponent" type="Node2D" parent="."]
+script = ExtResource("4_x5ixd")
+damage = 20
+max_attack_range = 800
+attack_cooldown = 3.0

@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://ca225h6u1u18t"]
 
-[ext_resource type="Script" path="res://Zombie.gd" id="1_sev2w"]
-[ext_resource type="Texture2D" uid="uid://c7ga2isb6imnc" path="res://Art/characters/zombie.png" id="2_smt2b"]
-[ext_resource type="AudioStream" uid="uid://1cfrigjocsmi" path="res://Art/Sounds/my_hitmarker_sound.wav" id="3_gjn5s"]
+[ext_resource type="Script" path="res://Zombie.gd" id="1_cv7qc"]
+[ext_resource type="Texture2D" uid="uid://c7ga2isb6imnc" path="res://Art/characters/zombie.png" id="2_gcvoj"]
+[ext_resource type="AudioStream" uid="uid://1cfrigjocsmi" path="res://Art/Sounds/my_hitmarker_sound.wav" id="3_bqheo"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_u7mbn"]
 radius = 30.0
@@ -108,7 +108,7 @@ _data = {
 [node name="Zombie" type="CharacterBody2D" node_paths=PackedStringArray("HitMarkerSound")]
 collision_layer = 2
 collision_mask = 3
-script = ExtResource("1_sev2w")
+script = ExtResource("1_cv7qc")
 HitMarkerSound = NodePath("HitSoundEffect")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
@@ -118,7 +118,7 @@ collision_mask = 3
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 position = Vector2(6, 2)
-texture = ExtResource("2_smt2b")
+texture = ExtResource("2_gcvoj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(6, 1)
@@ -128,7 +128,7 @@ shape = SubResource("CircleShape2D_u7mbn")
 wait_time = 0.7
 
 [node name="HitSoundEffect" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_gjn5s")
+stream = ExtResource("3_bqheo")
 volume_db = 1.0
 bus = &"SFX"
 
