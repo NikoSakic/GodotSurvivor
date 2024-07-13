@@ -4,3 +4,4 @@ extends CharacterBody2D
 
 func _ready():
 	$PursuitComponent.set_target(player)
+	$EnemyShootingComponent.set_player(player)

@@ -74,7 +74,6 @@ func spawn_group(spawned_count:int) -> int:
 	
 func player_killed_enemy(_score :int):
 	enemies_killed += 1
-	print(enemies_killed)
 
 func increase_wave_difficulty():
 	zombies_per_wave *= 2

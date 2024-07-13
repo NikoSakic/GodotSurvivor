@@ -26,5 +26,5 @@ zoom = Vector2(2, 2)
 [node name="Explosion" parent="." instance=ExtResource("6_phd0c")]
 
 [node name="FireGhoul" parent="." node_paths=PackedStringArray("player") instance=ExtResource("6_u06sx")]
-position = Vector2(-181, -61)
+position = Vector2(-505, -289)
 player = NodePath("../Player")

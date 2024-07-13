@@ -2,7 +2,7 @@ extends Area2D
 class_name Bullet
 
 var travelled_distance = 0
-const RANGE = 1200
+@export var RANGE:int = 1200
 @export var SPEED = 1000
 var damage = 20
 @export var area2d : Area2D
@@ -24,3 +24,5 @@ func body_entered_area(body):
 	queue_free()
 	if body.has_method("take_damage"):
 		body.take_damage(damage)
+	if body.has_node("HealthComponent"):
+		body.get_node("HealthComponent").take_damage(damage)
